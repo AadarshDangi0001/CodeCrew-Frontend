@@ -1,0 +1,254 @@
+.page2 {
+  overflow: hidden;
+  width: 100vw;
+  height: 50vh;
+ 
+  position: relative;
+  margin-bottom: 10vh;
+
+  .head {
+    width: 200vw;
+    height: 20vh;
+    background-color: white;
+    display: flex;
+
+    align-items: center;
+
+    transform: translateX(-10%) rotate(5deg);
+  
+    top: 40%;
+    position: absolute;
+   
+    h1 {
+    font-weight: 700;
+      text-transform: uppercase;
+      font-size: 5vw;
+      color: black;
+      transform: translateX(10%);
+    }
+  }
+    .head2 {
+    width: 300vw;
+    height: 20vh;
+    background-color: white;
+    display: flex;
+
+    align-items: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateX(10%) rotate(-5deg);
+   
+    top: -5%;
+    left: -40%;
+    position: absolute;
+    
+    h1 {
+        font-weight: 700;
+      transform: translateX(-40%);
+      text-transform: uppercase;
+      font-size: 5vw;
+      color: black;
+    }
+  }
+
+
+
+} 
+@media (max-width: 1400px){
+  .page2 {
+    display: none;
+  }
+}
+
+
+
+@media (max-width: 800px){
+  .page2 {
+   
+    height:20vh;
+    display: flex;
+   }
+ 
+   .page2 .head {
+    width: 250vw; /* slightly smaller than original 200vw */
+    height: 8vh;
+   }
+   .page2 .head2 {
+    width:270vw;
+    height: 8vh;
+   
+  }
+  }
+@media(max-width:700px){
+  .page2 {
+   
+    height:18vh;
+   }
+ 
+   .page2 .head {
+    width: 260vw; /* slightly smaller than original 200vw */
+    height: 8vh;
+   }
+   .page2 .head2 {
+    width:260vw;
+    height: 8vh;
+   
+  }
+  }
+@media(max-width:660px){
+  .page2 {
+   
+    height:17vh;
+   }
+ 
+   .page2 .head {
+    width: 260vw; /* slightly smaller than original 200vw */
+    height: 8vh;
+   }
+   .page2 .head2 {
+    width:260vw;
+    height: 8vh;
+   
+  }
+  }
+
+@media(max-width:600px){
+  .page2 {
+   
+    height:17vh;
+   }
+ 
+   .page2 .head {
+    width: 300vw; /* slightly smaller than original 200vw */
+    height: 7vh;
+   }
+   .page2 .head2 {
+    width:260vw;
+    height: 7vh;
+   
+  }
+  }
+@media(max-width:550px){
+  .page2 {
+     
+      height:17vh;
+     }
+   
+     .page2 .head {
+      width: 300vw; /* slightly smaller than original 200vw */
+      height: 7vh;
+     }
+     .page2 .head2 {
+      width:280vw;
+      height: 7vh;
+     
+    }
+  }
+
+@media(max-width:480px){
+  .page2 {
+     
+      height:17vh;
+     }
+   
+     .page2 .head {
+      width: 300vw; /* slightly smaller than original 200vw */
+      height: 7vh;
+     }
+     .page2 .head2 {
+      width:310vw;
+      height: 7vh;
+     
+    }
+  }
+@media(max-width:450px){
+  .page2 {
+     
+      height:17vh;
+     }
+   
+     .page2 .head {
+      width: 400vw; /* slightly smaller than original 200vw */
+      height: 6vh;
+     }
+     .page2 .head2 {
+      width:270vw;
+      height: 6vh;
+     
+    }
+  }
+
+
+  @media(max-width:420px){
+    .page2 {
+       
+        height:17vh;
+       }
+     
+       .page2 .head {
+         width: 400vw; /* slightly smaller than original 200vw */
+         height: 6vh;
+        }
+        .page2 .head2 {
+         width:270vw;
+         height: 6vh;
+        
+       }
+    }
+
+    @media(max-width:400px){
+      .page2 {
+         
+          height:17vh;
+         }
+       
+         .page2 .head {
+           width: 400vw; /* slightly smaller than original 200vw */
+           height: 6vh;
+          }
+          .page2 .head2 {
+           width:290vw;
+           height: 6vh;
+          
+         }
+      }
+
+
+
+
+@media only screen and (width: 360px) and (height: 780px) {
+  .page2 {
+         
+    height:17vh;
+   }
+ 
+   .page2 .head {
+     width: 480vw; /* slightly smaller than original 200vw */
+     height: 6vh;
+    }
+    .page2 .head2 {
+     width:260vw;
+     height: 6vh;
+    
+   }
+
+}
+
+
+
+@media only screen and (width: 393px) and (height: 852px) {
+  .page2 {
+         
+    height:17vh;
+   }
+ 
+   .page2 .head {
+     width: 400vw; /* slightly smaller than original 200vw */
+     height: 6vh;
+    }
+    .page2 .head2 {
+     width:270vw;
+     height: 6vh;
+    
+   }
+
+}

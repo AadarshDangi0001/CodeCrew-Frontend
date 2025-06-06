@@ -1,0 +1,111 @@
+
+@media (max-width: 1060px) {
+  .imgscollor {
+    overflow: hidden;
+    height: 50vh;
+    width: 100%;
+    /* background-color: rgb(17, 188, 250); */
+    background-color: black;
+    margin-bottom: 20vh;
+  
+    .box {
+      height: 100%;
+      display: flex;
+      /* justify-content: center;
+           align-items: center; */
+      gap: 5vw;
+      width: 900vw;
+      /* background-color: yellow; */
+  
+      .imgs {
+        width: 100vw !important;
+        height: 100%;
+        background-color: rgb(29, 26, 26);
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+
+}
+
+
+@media (max-width: 1060px) {
+ .imgscollor {
+    overflow: hidden;
+    height: 70vh;
+    width: 100%;
+    /* background-color: rgb(17, 188, 250); */
+    /* background-color: rgb(143, 97, 97); */
+  }
+
+}
+
+@media (max-width: 560px) {
+   .imgscollor {
+    overflow: hidden;
+    height: 50vh;
+    width: 100%;
+    /* background-color: rgb(17, 188, 250); */
+    background-color: black;
+    margin-bottom: 20vh;
+  
+    .box {
+      height: 100%;
+      display: flex;
+      /* justify-content: center;
+           align-items: center; */
+      gap: 5vw;
+      width: 900vw;
+      /* background-color: yellow; */
+  
+      .imgs {
+        width: 100vw !important;
+        height: 100%;
+        background-color: rgb(29, 26, 26);
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 460px) {
+ .imgscollor {
+    overflow: hidden;
+    height: 50vh;
+    width: 100%;
+    /* background-color: rgb(17, 188, 250); */
+    background-color: black;
+    margin-bottom: 20vh;
+  
+    .box {
+      height: 100%;
+      display: flex;
+      /* justify-content: center;
+           align-items: center; */
+      gap: 5vw;
+      width: 900vw;
+      /* background-color: yellow; */
+  
+      .imgs {
+        width: 100vw !important;
+        height: 100%;
+        background-color: rgb(29, 26, 26);
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
