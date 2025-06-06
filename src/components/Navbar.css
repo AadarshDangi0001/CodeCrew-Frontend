@@ -1,5 +1,5 @@
 .navbar{
-  background-color: #504f4f;
+  background-color: #000000;
   width: 100vw;
   height: 10vh;
   position: fixed;
@@ -8,6 +8,280 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
-  z-index: 1000;
+  padding: 0 5vw;
+  z-index: 1002;
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1), opacity 0.25s;
+}
+
+
+
+
+.navlogo{
+  width: 60px;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.navleft{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.navlinks{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2vh;
+  gap: 2vw;
+
+  h1{
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.7;
+    position: relative;
+    transition: opacity 0.2s;
+
+    &.nav-active {
+      opacity: 1;
+    }
+
+    &.nav-active::after {
+      content: "";
+      display: block;
+      margin: 0 auto;
+      margin-top: 4px;
+      width: 60%;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+    }
+  }
+}
+
+
+
+.btnnav {
+      
+        font-size: 15px;
+        width: 15em;
+        height: 3rem;
+}
+
+.navbutton{
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+   
+    nav ul li {
+      cursor: pointer;
+      --c: rgb(255, 255, 255);
+      color: var(--c);
+      font-size: 16px;
+      border: 0.1em solid var(--c);
+      border-radius: 0.5em;
+      width: 9em;
+      height: 3rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-family: sans-serif;
+      letter-spacing: 0.1em;
+      text-align: center;
+      line-height: 3em;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: 0.5s;
+      margin: 1em;
+    }
+
+    nav ul li span {
+      position: absolute;
+      width: 25%;
+      height: 100%;
+      background-color: var(--c);
+      transform: translateY(150%);
+      border-radius: 50%;
+      left: calc((var(--n) - 1) * 25%);
+      transition: 0.5s;
+      transition-delay: calc((var(--n) - 1) * 0.1s);
+      z-index: -1;
+    }
+
+    nav ul li:hover {
+      color: black;
+    }
+
+    nav ul li:hover span {
+      transform: translateY(0) scale(2);
+    }
+
+    nav ul li span:nth-child(1) {
+      --n: 1;
+    }
+
+    nav ul li span:nth-child(2) {
+      --n: 2;
+    }
+
+    nav ul li span:nth-child(3) {
+      --n: 3;
+    }
+
+    nav ul li span:nth-child(4) {
+      --n: 4;
+    }
+  
+}
+
+
+.navbutton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border :1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sidebar styles */
+.mobile-menu-btn {
+  display: none;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+.sidebar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    z-index: 1101;
+  }
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .sidebar-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sidebar {
+    display: block;
+    position: fixed;
+    top: 0; left: 0;
+    width: 75vw;
+    max-width: 320px;
+    height: 100vh;
+    background: linear-gradient(135deg, #18181b 80%, #222 100%);
+    z-index: 1200;
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.4);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-content {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .sidebar-logo {
+    margin-bottom: 2rem;
+    width: 60px;
+  }
+  .sidebar-logo img {
+    width: 100%;
+  }
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .sidebar-links h1 {
+    color: #fff;
+    font-size: 1.3rem;
+    opacity: 0.7;
+    position: relative;
+    transition: opacity 0.2s;
+    text-transform: uppercase;
+  }
+  .sidebar-links h1.nav-active {
+    opacity: 1;
+   
+  }
+  .sidebar-links h1.nav-active::after {
+    content: none; /* Remove the underline in mobile */
+  }
+  .sidebar-btnnav {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 0.5em;
+    width: 100%;
+    padding: 0.8em 0;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+  }
+  .sidebar-profile {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 0.5em 1em;
+    background: #222;
+    border: 1px solid #fff;
+  }
+
+  .navlogo{
+     width:40px;
+   }
+}
+
+/* Add these if missing */
+.navbar-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }

@@ -1,19 +1,55 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getMe, login as apiLogin } from "../utils/api"; // import your API helpers
 
 // Create the context
 const AuthContext = createContext();
 
 // Provider component
 export const AuthProvider = ({ children }) => {
-  // You can replace this with real authentication logic
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Example login/logout functions
-  const login = (userData) => setUser(userData);
-  const logout = () => setUser(null);
+  // On mount, check if user is authenticated via backend
+  useEffect(() => {
+    async function fetchUser() {
+      setLoading(true);
+      try {
+        const res = await getMe();
+        if (res.success && res.data) {
+          setUser(res.data);
+        } else {
+          setUser(null);
+        }
+      } catch {
+        setUser(null);
+      }
+      setLoading(false);
+    }
+    fetchUser();
+  }, []);
+
+  // Login function: calls backend, sets user if successful
+  const login = async (email, password) => {
+    const res = await apiLogin(email, password);
+    if (res.success && res.token) {
+      // After login, fetch user info
+      const me = await getMe();
+      if (me.success && me.data) {
+        setUser(me.data);
+      }
+    }
+    return res;
+  };
+
+  // Logout function: clear user and optionally call backend logout
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("token"); // if you use tokens in localStorage
+    // Optionally: call backend logout endpoint if you have one
+  };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
