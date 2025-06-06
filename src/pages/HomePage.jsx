@@ -54,7 +54,7 @@ const HomePage = () => {
 
   return (
     <div className="main bg-black w-screen  h-full">
-      <div className="home-logo w-screen h-[60vh] md:h-screen flex items-center justify-center bg-black">
+      <div className="home-logo w-screen h-[40vh] md:h-screen flex items-center justify-center bg-black">
         <img
           className="max-w-full max-h-full object-contain"
           src={CodeCrewLogo}
