@@ -37,12 +37,32 @@ export async function getMe() {
   }
 }
 
-export async function applyToJoinCrew(mobileNumber, message) {
+export async function applyToJoinCrew(
+  mobileNumber,
+  techStack,
+  college,
+  branch,
+  cityState,
+  linkedin,
+  github,
+  codingPlatform,
+  message // add this
+) {
   const res = await fetch("http://localhost:5050/api/v1/crew/apply", {
     method: "POST",
-    credentials: "include", // send cookies/JWT
+    credentials: "include",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ mobileNumber, message }),
+    body: JSON.stringify({
+      mobileNumber,
+      techStack,
+      college,
+      branch,
+      cityState,
+      linkedin,
+      github,
+      codingPlatform,
+      message // add this
+    }),
   });
   return res.json();
 }

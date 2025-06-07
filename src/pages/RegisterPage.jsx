@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { register } from '../utils/api'; // adjust path as needed
+import { register } from '../utils/api';
+import { useAuth } from '../context/AuthContext';
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); // get login from context
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await register(username, email, password);
     if (result.success) {
-      navigate('/');
+      // Automatically log in after registration
+      const loginResult = await login(email, password);
+      if (loginResult.success) {
+        navigate('/');
+      } else {
+        alert("Registered, but login failed. Please login manually.");
+        navigate('/login');
+      }
     } else {
       alert(result.message || "Registration failed");
     }

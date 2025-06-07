@@ -1,23 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { applyToJoinCrew } from '../utils/api'; // <-- import the API
+import { applyToJoinCrew, getMyCrewApplication } from '../utils/api';
 
 const Joincrew = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [mobile, setMobile] = useState('');
+  const [techStack, setTechStack] = useState('');
+  const [college, setCollege] = useState('');
+  const [branch, setBranch] = useState('');
+  const [cityState, setCityState] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [github, setGithub] = useState('');
+  const [codingPlatform, setCodingPlatform] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Redirect to /hackathons if status is approved
+  useEffect(() => {
+    if (user) {
+      getMyCrewApplication().then(res => {
+        if (res.success && res.data && res.data.status === "approved") {
+          navigate("/hackathons");
+        }
+      });
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const result = await applyToJoinCrew(mobile, message);
+    const result = await applyToJoinCrew(
+      mobile,
+      techStack,
+      college,
+      branch,
+      cityState,
+      linkedin,
+      github,
+      codingPlatform,
+      message
+    );
     setLoading(false);
     if (result.success) {
       alert("Application submitted!");
       setMobile('');
+      setTechStack('');
+      setCollege('');
+      setBranch('');
+      setCityState('');
+      setLinkedin('');
+      setGithub('');
+      setCodingPlatform('');
       setMessage('');
     } else {
       alert(result.error || "Failed to submit application.");
@@ -57,14 +92,86 @@ const Joincrew = () => {
           />
         </label>
         <label className="text-white font-semibold">
-          Message
+          Tech Stack
+          <input
+            type="text"
+            value={techStack}
+            onChange={e => setTechStack(e.target.value)}
+            required
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="e.g. MERN, Python, Java"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          College
+          <input
+            type="text"
+            value={college}
+            onChange={e => setCollege(e.target.value)}
+            required
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="Your College Name"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          Branch
+          <input
+            type="text"
+            value={branch}
+            onChange={e => setBranch(e.target.value)}
+            required
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="Your Branch"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          City & State
+          <input
+            type="text"
+            value={cityState}
+            onChange={e => setCityState(e.target.value)}
+            required
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="City, State"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          LinkedIn (optional)
+          <input
+            type="url"
+            value={linkedin}
+            onChange={e => setLinkedin(e.target.value)}
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="LinkedIn Profile URL"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          GitHub (optional)
+          <input
+            type="url"
+            value={github}
+            onChange={e => setGithub(e.target.value)}
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="GitHub Profile URL"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          Coding Platform ID (optional)
+          <input
+            type="text"
+            value={codingPlatform}
+            onChange={e => setCodingPlatform(e.target.value)}
+            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
+            placeholder="LeetCode/Codeforces/HackerRank ID"
+          />
+        </label>
+        <label className="text-white font-semibold">
+          Message (optional)
           <textarea
             value={message}
             onChange={e => setMessage(e.target.value)}
-            required
             className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white outline-none border border-zinc-700 focus:border-white"
-            placeholder="Why do you want to join?"
-            rows={4}
+            placeholder="Write a message (optional)"
           />
         </label>
         <button
