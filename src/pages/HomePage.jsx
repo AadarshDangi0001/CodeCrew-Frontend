@@ -66,7 +66,7 @@ const HomePage = () => {
         ref={sectionRef}
         className="home-section-2  "
       >
-        <h1 className="text-white ">{splitWords(heading)}</h1>
+        <h1 className="text-white  maintext">{splitWords(heading)}</h1>
 
         <h3 className="text-white ">
           {splitWords(para1)}

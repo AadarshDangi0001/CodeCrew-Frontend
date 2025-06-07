@@ -114,7 +114,8 @@
     }
 
     nav ul li:hover {
-      color: black;
+      color: black !important;
+     
     }
 
     nav ul li:hover span {

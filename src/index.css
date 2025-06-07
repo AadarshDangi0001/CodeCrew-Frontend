@@ -100,30 +100,35 @@ nav ul li span:nth-child(4) {
   gap: 5vh;
   margin-bottom: 10vh;
 
-  h1 {
-    font-size: 3rem;
-    font-weight: 500;
-  }
-  h3 {
+ 
+  h3 
+  {
     font-size: 2rem;
     font-weight: 350;
   }
+  
 }
 
-
+ .maintext {
+    font-size: 3rem;
+    font-weight: 500;
+  }
 
 @media (max-width: 1060px) {
 
   .home-section-2 {
     padding: 0 10vh;
     margin-bottom: 0vh;
-    h1 {
-      font-size: 3rem;
-    }
+   
     h3 {
+     
       font-size: 1.2rem;
     }
   }
+
+   .maintext {
+      font-size: 3rem;
+    }
 
 
 }
@@ -133,13 +138,14 @@ nav ul li span:nth-child(4) {
    .home-section-2 {
     padding: 0 5vh;
     margin-bottom: 10vh;
-    h1 {
-      font-size: 2rem;
-    }
+   
     h3 {
       font-size: 1rem;
     }
   }
+   .maintext  {
+      font-size: 2rem;
+    }
 
 
 }
@@ -149,13 +155,14 @@ nav ul li span:nth-child(4) {
     .home-section-2 {
     padding: 0 5vh;
     margin-bottom: 10vh;
-    h1 {
-      font-size: 2rem;
-    }
+    
     h3 {
       font-size: 1rem;
     }
   }
+  .maintext {
+      font-size: 2rem;
+    }
 
 }
 

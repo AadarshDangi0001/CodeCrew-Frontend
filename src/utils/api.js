@@ -21,11 +21,20 @@ export async function register(name, email, password) {
 }
 
 export async function getMe() {
-  const res = await fetch(`${API_BASE}/auth/me`, {
-    method: "GET",
-    credentials: "include",
-  });
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE}/auth/me`, {
+      method: "GET",
+      credentials: "include",
+    });
+    if (!res.ok) {
+      // If unauthorized or any error, return a safe value
+      return { success: false, data: null };
+    }
+    return await res.json();
+  } catch (err) {
+    // Network or other error, return a safe value
+    return { success: false, data: null };
+  }
 }
 
 export async function applyToJoinCrew(mobileNumber, message) {

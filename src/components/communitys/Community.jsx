@@ -9,7 +9,7 @@ import './Community.css'
 const Community = () => {
   return (
     <div className='view-4'>
-       <h1 className="commu text-6xl">JOIN OUR COMMUNITIES</h1>
+       <h1 className="commu maintext">JOIN OUR COMMUNITIES</h1>
         <div className="communitys">
           <div className="com1 glow-on-hover">
             <div className="comlogo">

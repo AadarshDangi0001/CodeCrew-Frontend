@@ -65,20 +65,20 @@ const Crew = () => {
 
   // Approved: show chat area
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center py-10 px-2">
+    <div className="min-h-screen bg-black flex flex-col items-center  mt-20 py-10 px-2">
       <h1 className="text-4xl font-bold mb-8 text-white text-center">Crew Chat</h1>
       <div
         className="w-full max-w-lg flex flex-col flex-1 rounded-lg shadow-lg"
         style={{
-          background: "url('https://i.imgur.com/3b6hF8b.png') center/cover, #18181b",
-          minHeight: "60vh",
-          maxHeight: "70vh",
+         
+          Height: "70vh",
+         
           overflow: "hidden",
         }}
       >
         <div
           className="flex-1 overflow-y-auto p-4"
-          style={{ minHeight: "50vh", maxHeight: "60vh" }}
+          style={{ minHeight: "50vh", maxHeight: "65vh" }}
         >
           {messages.map((msg, idx) => (
             <div
