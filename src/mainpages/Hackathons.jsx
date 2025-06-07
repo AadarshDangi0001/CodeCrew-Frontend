@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getMyCrewApplication } from "../utils/api";
+import { getMyCrewApplication, getHackathons } from "../utils/api";
+import "./Hackathons.css";
 
 const Hackathons = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [crewStatus, setCrewStatus] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [hackathons, setHackathons] = useState([]);
 
   useEffect(() => {
     if (!user) {
@@ -24,9 +26,17 @@ const Hackathons = () => {
     });
   }, [user]);
 
+  useEffect(() => {
+    if (crewStatus === "approved") {
+      getHackathons().then((res) => {
+        if (res.success) setHackathons(res.data);
+      });
+    }
+  }, [crewStatus]);
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+      <div className="hackathons-loading">
         Loading...
       </div>
     );
@@ -34,13 +44,11 @@ const Hackathons = () => {
 
   if (!user || crewStatus !== "approved") {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-        <h2 className="text-2xl font-bold mb-4">Join Crew First</h2>
-        <p className="mb-6">
-          You must be an approved crew member to view hackathons.
-        </p>
+      <div className="hackathons-joincrew">
+        <h2>Join Crew First</h2>
+        <p>You must be an approved crew member to view hackathons.</p>
         <button
-          className="px-6 py-2 bg-white text-black rounded font-bold hover:bg-zinc-200 transition"
+          className="hackathons-joincrew-btn"
           onClick={() => navigate("/joincrew")}
         >
           Join Crew
@@ -51,20 +59,26 @@ const Hackathons = () => {
 
   // Approved: show hackathons
   return (
-    <div className="min-h-screen bg-black text-white px-4 py-10">
-      <h1 className="text-4xl font-bold mb-8 text-center">Hackathons</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {[1, 2, 3, 4, 5].map((i) => (
+    <div className="hackathons-container">
+      <h1 className="hackathons-title">Hackathons</h1>
+      <div className="hackathons-grid">
+        {hackathons.length === 0 && <div>No hackathons found.</div>}
+        {hackathons.map((hack) => (
           <div
-            key={i}
-            className="bg-[#18181b] rounded-lg shadow-lg p-6 flex flex-col items-center"
+            key={hack._id}
+            className="hackathon-card"
           >
-            <h2 className="text-xl font-bold mb-2">Hackathon {i}</h2>
-            <p className="text-zinc-300 mb-4">
-              This is a dummy hackathon card. Details about the event go here.
-            </p>
-            <button className="bg-white text-black font-bold py-2 px-4 rounded hover:bg-zinc-200 transition">
-              View Details
+            <h2 className="hackathon-name">{hack.name}</h2>
+            <div className="hackathon-info">
+              <div><b>Venue:</b> {hack.venue}</div>
+              <div><b>Prize:</b> {hack.prizePool}</div>
+              <div><b>Date:</b> {hack.date ? new Date(hack.date).toLocaleDateString() : "N/A"}</div>
+            </div>
+            <button
+              className="hackathon-details-btn"
+              onClick={() => navigate(`/hackathon-detail/${hack._id}`)}
+            >
+              Show Details
             </button>
           </div>
         ))}

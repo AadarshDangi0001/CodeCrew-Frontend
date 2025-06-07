@@ -11,6 +11,9 @@ import Joincrew from "../mainpages/Joincrew.jsx";
 import Crew from "../mainpages/Crew.jsx";
 import Profile from "../mainpages/Profile.jsx";
 import UpdateProfile from "../mainpages/UpdateProfile.jsx";
+import AdminPage from '../admin/AdminPage';
+import ProtectedAdminRoute from "./ProtectedAdminRoute";
+import HackathonDetail from "../mainpages/HackathonDetail"; // Create this file
 
 const AppRoutes = () => (
   <Routes>
@@ -25,6 +28,15 @@ const AppRoutes = () => (
     <Route path="/crew" element={<Crew/>} />
     <Route path = "/profile" element={<Profile/>} />
     <Route path="/update-profile" element={<UpdateProfile />} />
+    <Route
+      path="/admin"
+      element={
+        <ProtectedAdminRoute>
+          <AdminPage />
+        </ProtectedAdminRoute>
+      }
+    />
+    <Route path="/hackathon-detail/:id" element={<HackathonDetail />} />
   </Routes>
 );
 

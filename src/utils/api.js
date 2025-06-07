@@ -1,5 +1,41 @@
 const API_BASE = "http://localhost:5050/api/v1";
 
+// Users
+export async function getAllUsers() {
+  const res = await fetch(`${API_BASE}/admin/users`, { credentials: "include" });
+  return await res.json();
+}
+export async function deleteUser(id) {
+  const res = await fetch(`${API_BASE}/admin/users/${id}`, { method: "DELETE", credentials: "include" });
+  return await res.json();
+}
+
+// Hackathons
+export async function getHackathons() {
+  const res = await fetch(`${API_BASE}/hackathons`, { credentials: "include" });
+  return await res.json();
+}
+export async function addHackathon(formData) {
+  const res = await fetch(`${API_BASE}/hackathons`, {
+    method: "POST",
+    body: formData,
+    credentials: "include"
+  });
+  return await res.json();
+}
+export async function updateHackathon(id, formData) {
+  const res = await fetch(`${API_BASE}/hackathons/${id}`, {
+    method: "PUT",
+    body: formData,
+    credentials: "include"
+  });
+  return await res.json();
+}
+export async function deleteHackathon(id) {
+  const res = await fetch(`${API_BASE}/hackathons/${id}`, { method: "DELETE", credentials: "include" });
+  return await res.json();
+}
+
 export async function login(email, password) {
   const res = await fetch(`${API_BASE}/auth/login`, {
     method: "POST",

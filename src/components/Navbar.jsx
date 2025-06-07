@@ -109,6 +109,11 @@ const Navbar = () => {
         {/* Desktop nav */}
         <div className="navleft desktop-nav">
           <div className="navlinks">
+            {user?.isAdmin && (
+              <Link to="/admin">
+                <h1 className={isActive("/admin") ? "nav-active" : ""}>Admin</h1>
+              </Link>
+            )}
             <Link to="/"><h1 className={isActive("/") ? "nav-active" : ""}>Home</h1></Link>
             <Link to="/about"><h1 className={isActive("/about") ? "nav-active" : ""}>About</h1></Link>
             <Link to="/contact"><h1 className={isActive("/contact") ? "nav-active" : ""}>Contact</h1></Link>
@@ -199,6 +204,11 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="sidebar-links">
+            {user?.isAdmin && (
+              <Link to="/admin">
+                <h1 className={isActive("/admin") ? "nav-active" : ""}>Admin</h1>
+              </Link>
+            )}
             <Link to="/"><h1 className={isActive("/") ? "nav-active" : ""}>Home</h1></Link>
             <Link to="/about"><h1 className={isActive("/about") ? "nav-active" : ""}>About</h1></Link>
             <Link to="/contact"><h1 className={isActive("/contact") ? "nav-active" : ""}>Contact</h1></Link>
