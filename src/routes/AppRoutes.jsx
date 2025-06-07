@@ -10,6 +10,7 @@ import RegisterPage from "../pages/RegisterPage.jsx";
 import Joincrew from "../mainpages/Joincrew.jsx";
 import Crew from "../mainpages/Crew.jsx";
 import Profile from "../mainpages/Profile.jsx";
+import UpdateProfile from "../mainpages/UpdateProfile.jsx";
 
 const AppRoutes = () => (
   <Routes>
@@ -23,6 +24,7 @@ const AppRoutes = () => (
     <Route path="/joincrew" element={<Joincrew/>} />
     <Route path="/crew" element={<Crew/>} />
     <Route path = "/profile" element={<Profile/>} />
+    <Route path="/update-profile" element={<UpdateProfile />} />
   </Routes>
 );
 

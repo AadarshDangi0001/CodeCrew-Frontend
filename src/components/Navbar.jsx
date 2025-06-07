@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 import CodeCrewSmall from '../assets/CodeCrewSmall.png'
 import { useAuth } from '../context/AuthContext'
-import { getMyCrewApplication } from '../utils/api'
+import { getUserAndCrew, getMyCrewApplication } from '../utils/api'
 
 // Simple SVG for a profile icon:
 
@@ -28,6 +28,8 @@ const MenuIcon = ({ open }) => (
 const Navbar = () => {
   const { user } = useAuth();
   const [crewStatus, setCrewStatus] = useState(null);
+  const [profileImg, setProfileImg] = useState(null);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
@@ -35,15 +37,29 @@ const Navbar = () => {
 
   useEffect(() => {
     if (user) {
+      setLoading(true);
       getMyCrewApplication().then(res => {
         if (res.success && res.data) {
           setCrewStatus(res.data.status);
         } else {
           setCrewStatus(null);
         }
+        setLoading(false);
       });
     } else {
       setCrewStatus(null);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      setLoading(true);
+      getUserAndCrew().then(res => {
+        if (res.success) setProfileImg(res.data.user.profileImg);
+        setLoading(false);
+      });
+    } else {
+      setProfileImg(null);
     }
   }, [user]);
 
@@ -101,7 +117,7 @@ const Navbar = () => {
           </div>
           <div className="navbutton">
             <div className="b1">
-              {(!crewStatus || crewStatus !== "approved") && (
+              {(!crewStatus || crewStatus !== "approved") && !loading && (
                 <Link to="/joincrew">
                   <nav>
                     <ul>
@@ -113,12 +129,48 @@ const Navbar = () => {
                   </nav>
                 </Link>
               )}
+              {loading && (
+                <div style={{ color: "#fff", padding: "0.5rem 1rem" }}>Loading...</div>
+              )}
             </div>
             <div className="b2">
               {user ? (
                 <Link to="/profile">
                   <div className="profile flex items-center justify-center" title="Profile">
-                   
+                    {loading ? (
+                      <div
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: "50%",
+                          background: "#222",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#fff",
+                          fontSize: 18,
+                        }}
+                      >
+                        ...
+                      </div>
+                    ) : (
+                      <img
+                        src={
+                          profileImg ||
+                          "https://ui-avatars.com/api/?name=" +
+                            encodeURIComponent(user?.name || user?.username || "User") +
+                            "&background=18181b&color=fff&size=128"
+                        }
+                        alt="Profile"
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                          background: "#18181b"
+                        }}
+                      />
+                    )}
                   </div>
                 </Link>
               ) : (
