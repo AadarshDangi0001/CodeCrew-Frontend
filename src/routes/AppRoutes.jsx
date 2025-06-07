@@ -9,6 +9,7 @@ import LoginPage from "../pages/LoginPage.jsx";
 import RegisterPage from "../pages/RegisterPage.jsx";
 import Joincrew from "../mainpages/Joincrew.jsx";
 import Crew from "../mainpages/Crew.jsx";
+import Profile from "../mainpages/Profile.jsx";
 
 const AppRoutes = () => (
   <Routes>
@@ -21,6 +22,7 @@ const AppRoutes = () => (
     <Route path="*" element={<NotFound />} /> 
     <Route path="/joincrew" element={<Joincrew/>} />
     <Route path="/crew" element={<Crew/>} />
+    <Route path = "/profile" element={<Profile/>} />
   </Routes>
 );
 
