@@ -42,10 +42,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Logout function: clear user and optionally call backend logout
-  const logout = () => {
+  const logout = async () => {
+    await fetch("http://localhost:5050/api/v1/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
     setUser(null);
-    localStorage.removeItem("token"); // if you use tokens in localStorage
-    // Optionally: call backend logout endpoint if you have one
+    localStorage.removeItem("token");
   };
 
   return (

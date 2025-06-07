@@ -10,6 +10,7 @@ const NotFound = () => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      textAlign: "center",
       fontSize: "2rem",
       fontWeight: "bold"
     }}>
