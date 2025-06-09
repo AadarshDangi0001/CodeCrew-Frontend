@@ -145,3 +145,7 @@ export async function getUserAndCrew() {
     return { success: false, data: null };
   }
 }
+
+export function getGoogleAuthUrl() {
+  return "http://localhost:5050/api/v1/auth/google";
+}
