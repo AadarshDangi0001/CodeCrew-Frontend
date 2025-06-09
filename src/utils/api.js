@@ -9,6 +9,10 @@ export async function deleteUser(id) {
   const res = await fetch(`${API_BASE}/admin/users/${id}`, { method: "DELETE", credentials: "include" });
   return await res.json();
 }
+export async function getUserById(id) {
+  const res = await fetch(`${API_BASE}/user/${id}`, { credentials: "include" });
+  return await res.json();
+}
 
 // Hackathons
 export async function getHackathons() {

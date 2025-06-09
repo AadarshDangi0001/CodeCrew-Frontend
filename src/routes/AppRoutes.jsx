@@ -11,9 +11,13 @@ import Joincrew from "../mainpages/Joincrew.jsx";
 import Crew from "../mainpages/Crew.jsx";
 import Profile from "../mainpages/Profile.jsx";
 import UpdateProfile from "../mainpages/UpdateProfile.jsx";
-import AdminPage from '../admin/AdminPage';
+
 import ProtectedAdminRoute from "./ProtectedAdminRoute";
 import HackathonDetail from "../mainpages/HackathonDetail"; // Create this file
+import AdminDashboard from '../admin/AdminDashboard';
+import AdminUsers from '../admin/AdminUsers';
+import AdminHackathons from '../admin/AdminHackathons.jsx';
+import ViewProfile from "../mainpages/ViewProfile"; // Create this file
 
 const AppRoutes = () => (
   <Routes>
@@ -32,11 +36,28 @@ const AppRoutes = () => (
       path="/admin"
       element={
         <ProtectedAdminRoute>
-          <AdminPage />
+          <AdminDashboard />
+        </ProtectedAdminRoute>
+      }
+    />
+    <Route
+      path="/admin/users"
+      element={
+        <ProtectedAdminRoute>
+          <AdminUsers />
+        </ProtectedAdminRoute>
+      }
+    />
+    <Route
+      path="/admin/hackathons"
+      element={
+        <ProtectedAdminRoute>
+          <AdminHackathons />
         </ProtectedAdminRoute>
       }
     />
     <Route path="/hackathon-detail/:id" element={<HackathonDetail />} />
+    <Route path="/view-profile/:id" element={<ViewProfile />} />
   </Routes>
 );
 

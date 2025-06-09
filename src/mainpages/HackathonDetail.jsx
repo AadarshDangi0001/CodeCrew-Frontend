@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getHackathons } from "../utils/api";
 import "./Hackathons.css";
 
 const HackathonDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [hack, setHack] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,9 +23,6 @@ const HackathonDetail = () => {
 
   return (
     <div className="hackathons-container">
-      <button className="hackathon-details-btn" onClick={() => navigate(-1)} style={{ marginBottom: 24 }}>
-        &larr; Back
-      </button>
       <div className="hackathon-card" style={{ maxWidth: 500, margin: "0 auto" }}>
         <h2 className="hackathon-name">{hack.name}</h2>
         <div className="hackathon-info">

@@ -40,10 +40,17 @@
   border-collapse: collapse;
   margin-top: 16px;
 }
+.admin-table tr {
+  transition: background 0.18s;
+}
+.admin-table tr:hover {
+  background: #23233a;
+}
 .admin-table th, .admin-table td {
   border: 1px solid #333;
   padding: 10px;
   text-align: left;
+  vertical-align: middle;
 }
 .admin-table th {
   background: #222;
@@ -52,14 +59,28 @@
   max-width: 60px;
   border-radius: 8px;
 }
+.admin-table button {
+  margin-right: 6px;
+  background: #4fa3ff;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.admin-table button:hover {
+  background: #1e88e5;
+}
 .admin-delete {
-  background: #e53935;
+  background: #e53935 !important;
   color: #fff;
   border: none;
   padding: 6px 14px;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 8px;
+  font-weight: bold;
 }
 .admin-form {
   display: flex;
@@ -135,13 +156,60 @@
   text-align: right;
 }
 .admin-delete {
-  background: #e53935;
+  background: #e53935 !important;
+}
+.admin-dashboard {
+  padding: 40px 0;
+  text-align: center;
+  margin-top: 10vh;
+}
+.admin-dashboard-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 32px 0;
+}
+.admin-dashboard-card {
+  background: #222;
+  border-radius: 12px;
+  padding: 32px 40px;
+  min-width: 180px;
+  color: #fff;
+  box-shadow: 0 2px 12px #0003;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.admin-dashboard-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px #0005;
+}
+.admin-dashboard-count {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 12px;
+  color: #4fa3ff;
+  letter-spacing: 2px;
+}
+.admin-dashboard-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+.admin-dashboard-actions button {
+  background: #4fa3ff;
   color: #fff;
   border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 12px 32px;
+  border-radius: 6px;
+  font-size: 1.1rem;
   font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #0002;
+  margin: 0 8px;
+}
+.admin-dashboard-actions button:hover {
+  background: #1e88e5;
 }
 @media (max-width: 700px) {
   .admin-container { padding: 12px 2vw; }
@@ -149,4 +217,14 @@
   .admin-form { flex-direction: column; }
   .admin-user-grid { flex-direction: column; gap: 16px; }
   .admin-user-card { min-width: 0; max-width: 100%; }
+}
+@media (max-width: 900px) {
+  .admin-dashboard-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .admin-table th, .admin-table td {
+    font-size: 14px;
+  }
 }
