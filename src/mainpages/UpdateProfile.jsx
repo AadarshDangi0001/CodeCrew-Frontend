@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { getUserAndCrew, updateProfile, updateCrewDetails } from "../utils/api";
-
+import './Profile.css';
 
 const UpdateProfile = () => {
   const { user, loading } = useAuth();
@@ -54,7 +54,16 @@ const UpdateProfile = () => {
   };
 
   const handleFileChange = e => {
-    setImgFile(e.target.files[0]);
+    const file = e.target.files[0];
+    setImgFile(file);
+    if (file) {
+      // Preview the image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setForm(f => ({ ...f, profileImg: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async e => {
@@ -91,167 +100,313 @@ const UpdateProfile = () => {
     }
 
     setSaving(false);
-    alert("Profile updated!");
+    alert("Profile updated successfully!");
     navigate("/profile", { replace: true });
   };
 
-  if (loading) return <div className="text-white text-center mt-20">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="profile-loading-wrapper">
+        <div className="loading-spinner"></div>
+        <p className="loading-text">Loading...</p>
+      </div>
+    );
+  }
 
   const notApproved = crewStatus !== "approved";
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center mt-20 py-12 px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-[#18181b] rounded-lg shadow-lg p-8 w-full max-w-lg flex flex-col gap-6 relative"
-        encType="multipart/form-data"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-white text-center">Update Profile</h2>
-        <label className="text-white font-semibold">
-          Name
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-          />
-        </label>
-        <label className="text-white font-semibold">
-          Email
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-          />
-        </label>
-        <label className="text-white font-semibold">
-          Profile Image
-          {form.profileImg && (
-            <img
-              src={form.profileImg}
-              alt="Current Profile"
-              className="w-20 h-20 rounded-full border-2 border-white mb-2 object-cover"
-            />
-          )}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-          />
-        </label>
-
-        {notApproved ? (
-          <div className="flex flex-col items-center justify-center my-8">
-            <div className="text-white text-lg font-bold mb-4 text-center">
-              Join Crew to unlock all details!
+    <div className="update-profile-wrapper">
+      <div className="update-profile-container">
+        {/* Header */}
+        <div className="update-profile-header">
+          <button className="back-button" onClick={() => navigate("/profile")}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Profile
+          </button>
+          <div className="update-header-content">
+            <div className="update-icon-badge">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
             </div>
+            <div>
+              <h1 className="update-title">Edit Profile</h1>
+              <p className="update-subtitle">Update your personal information and credentials</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="update-profile-form" encType="multipart/form-data">
+          {/* Basic Information */}
+          <div className="form-section">
+            <h3 className="section-heading">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Basic Information
+            </h3>
+            
+            {/* Profile Image */}
+            <div className="profile-image-upload">
+              <div className="current-profile-preview">
+                <img
+                  src={form.profileImg || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(form.name || 'User') + '&background=6366f1&color=fff&size=160'}
+                  alt="Profile Preview"
+                  className="preview-avatar"
+                />
+                <div className="upload-overlay">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                  </svg>
+                </div>
+              </div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="file-input-hidden"
+                id="profile-image-upload"
+              />
+              <label htmlFor="profile-image-upload" className="upload-button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                Upload New Photo
+              </label>
+            </div>
+
+            <div className="form-grid">
+              <div className="form-field">
+                <label className="field-label">
+                  Full Name <span className="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  className="form-input"
+                  placeholder="Your full name"
+                />
+              </div>
+
+              <div className="form-field">
+                <label className="field-label">
+                  Email Address <span className="required">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  className="form-input"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Conditional Crew Details */}
+          {notApproved ? (
+            <div className="crew-gate-card">
+              <div className="gate-icon-circle">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h3 className="gate-title">Join Code Crew to Unlock</h3>
+              <p className="gate-message">
+                Become a verified member to access additional profile fields and exclusive features.
+              </p>
+              <button
+                type="button"
+                className="gate-join-button"
+                onClick={() => navigate('/joincrew')}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+                Join Code Crew
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Personal Details */}
+              <div className="form-section">
+                <h3 className="section-heading">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  Contact Information
+                </h3>
+                
+                <div className="form-grid">
+                  <div className="form-field">
+                    <label className="field-label">Mobile Number</label>
+                    <input
+                      type="tel"
+                      name="mobileNumber"
+                      value={form.mobileNumber}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="Your mobile number"
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label className="field-label">City & State</label>
+                    <input
+                      type="text"
+                      name="cityState"
+                      value={form.cityState}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="City, State"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Academic Details */}
+              <div className="form-section">
+                <h3 className="section-heading">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                  </svg>
+                  Academic Information
+                </h3>
+                
+                <div className="form-grid">
+                  <div className="form-field">
+                    <label className="field-label">College/University</label>
+                    <input
+                      type="text"
+                      name="college"
+                      value={form.college}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="Your institution"
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label className="field-label">Branch/Major</label>
+                    <input
+                      type="text"
+                      name="branch"
+                      value={form.branch}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="e.g., Computer Science"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Technical & Social */}
+              <div className="form-section">
+                <h3 className="section-heading">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                  Technical & Social Links
+                </h3>
+                
+                <div className="form-field">
+                  <label className="field-label">Tech Stack</label>
+                  <input
+                    type="text"
+                    name="techStack"
+                    value={form.techStack}
+                    onChange={handleChange}
+                    className="form-input"
+                    placeholder="e.g., MERN, Python, Java"
+                  />
+                </div>
+
+                <div className="form-grid">
+                  <div className="form-field">
+                    <label className="field-label">LinkedIn Profile</label>
+                    <input
+                      type="url"
+                      name="linkedin"
+                      value={form.linkedin}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="LinkedIn URL"
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label className="field-label">GitHub Profile</label>
+                    <input
+                      type="url"
+                      name="github"
+                      value={form.github}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="GitHub URL"
+                    />
+                  </div>
+
+                  <div className="form-field form-field-full">
+                    <label className="field-label">Coding Platform Profile</label>
+                    <input
+                      type="text"
+                      name="codingPlatform"
+                      value={form.codingPlatform}
+                      onChange={handleChange}
+                      className="form-input"
+                      placeholder="LeetCode / Codeforces / HackerRank"
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* Submit Buttons */}
+          <div className="form-submit-section">
             <button
-              type="button"
-              className="bg-white text-black font-bold py-2 px-6 rounded hover:bg-zinc-200 transition"
-              onClick={() => navigate('/joincrew')}
+              type="submit"
+              className="submit-btn-modern"
+              disabled={saving}
             >
-              Join Crew
+              {saving ? (
+                <>
+                  <div className="btn-spinner"></div>
+                  Saving Changes...
+                </>
+              ) : (
+                <>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                    <polyline points="17 21 17 13 7 13 7 21"/>
+                    <polyline points="7 3 7 8 15 8"/>
+                  </svg>
+                  Save Changes
+                </>
+              )}
             </button>
           </div>
-        ) : (
-          <>
-            <label className="text-white font-semibold">
-              Mobile Number
-              <input
-                type="tel"
-                name="mobileNumber"
-                value={form.mobileNumber}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              Tech Stack
-              <input
-                type="text"
-                name="techStack"
-                value={form.techStack}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              College
-              <input
-                type="text"
-                name="college"
-                value={form.college}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              Branch
-              <input
-                type="text"
-                name="branch"
-                value={form.branch}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              City & State
-              <input
-                type="text"
-                name="cityState"
-                value={form.cityState}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              LinkedIn
-              <input
-                type="url"
-                name="linkedin"
-                value={form.linkedin}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              GitHub
-              <input
-                type="url"
-                name="github"
-                value={form.github}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-            <label className="text-white font-semibold">
-              Coding Platform ID
-              <input
-                type="text"
-                name="codingPlatform"
-                value={form.codingPlatform}
-                onChange={handleChange}
-                className="block w-full mt-1 p-3 rounded bg-zinc-900 text-white border border-zinc-700 focus:border-white"
-              />
-            </label>
-          </>
-        )}
-
-        <button
-          type="submit"
-          className="bg-white text-black font-bold py-2 rounded hover:bg-zinc-200 transition mt-4"
-          disabled={saving}
-        >
-          {saving ? "Saving..." : "Save Changes"}
-        </button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

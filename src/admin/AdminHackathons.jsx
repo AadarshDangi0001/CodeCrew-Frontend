@@ -52,22 +52,59 @@ const AdminHackathons = () => {
       entryFee: hack.entryFee || "",
       image: null,
     });
+    // Scroll to top to show the form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
     Object.entries(form).forEach(([key, value]) => {
-      if (key === "image" && value) data.append(key, value);
-      else if (key !== "image") data.append(key, value);
+      if (key === "image" && value) {
+        data.append(key, value);
+      } else if (key !== "image") {
+        data.append(key, value);
+      }
     });
 
-    if (editId) {
-      await updateHackathon(editId, data);
-      setEditId(null);
-    } else {
-      await addHackathon(data);
+    try {
+      let result;
+      if (editId) {
+        result = await updateHackathon(editId, data);
+      } else {
+        result = await addHackathon(data);
+      }
+      
+      if (result.success) {
+        // Reset form and editId
+        setEditId(null);
+        setForm({
+          name: "",
+          contactNumber: "",
+          link: "",
+          prizePool: "",
+          description: "",
+          techStack: "",
+          date: "",
+          rounds: "",
+          venue: "",
+          entryFee: "",
+          image: null,
+        });
+        // Clear file input
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = '';
+        // Refresh the list
+        fetchHacks();
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to save hackathon. Please try again.');
     }
+  };
+
+  const handleCancel = () => {
+    setEditId(null);
     setForm({
       name: "",
       contactNumber: "",
@@ -81,7 +118,9 @@ const AdminHackathons = () => {
       entryFee: "",
       image: null,
     });
-    fetchHacks();
+    // Clear file input
+    const fileInput = document.querySelector('input[type="file"]');
+    if (fileInput) fileInput.value = '';
   };
 
   return (
@@ -100,7 +139,7 @@ const AdminHackathons = () => {
         <input type="text" placeholder="Entry Fee" value={form.entryFee} onChange={e => setForm({ ...form, entryFee: e.target.value })} required />
         <input type="file" accept="image/*" onChange={e => setForm({ ...form, image: e.target.files[0] })} />
         <button type="submit">{editId ? "Update" : "Add"}</button>
-        {editId && <button type="button" onClick={() => { setEditId(null); setForm({ name: "", contactNumber: "", link: "", prizePool: "", description: "", techStack: "", date: "", rounds: "", venue: "", entryFee: "", image: null }); }}>Cancel</button>}
+        {editId && <button type="button" onClick={handleCancel}>Cancel</button>}
       </form>
       {loading ? <div>Loading...</div> : (
         <table className="admin-table">

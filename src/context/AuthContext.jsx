@@ -28,6 +28,19 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
 
+  // Exposed helper to refresh the cached user data (useful after actions like payment)
+  const refreshUser = async () => {
+    setLoading(true);
+    try {
+      const res = await getMe();
+      if (res.success && res.data) setUser(res.data);
+      else setUser(null);
+    } catch {
+      setUser(null);
+    }
+    setLoading(false);
+  };
+
   // Login function: calls backend, sets user if successful
   const login = async (email, password) => {
     const res = await apiLogin(email, password);
@@ -52,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

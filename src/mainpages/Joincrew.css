@@ -1,0 +1,426 @@
+/* ========================================
+   JOIN CREW PAGE - MODERN REDESIGN
+   ======================================== */
+
+/* Gate/Login Required Section */
+.join-crew-gate-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000 0%, #0f172a 100%);
+  padding: 24px;
+  margin-top: 8vh;
+}
+
+.gate-content-modern {
+  max-width: 520px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 56px 40px;
+}
+
+.gate-icon-large {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 28px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 12px 32px rgba(99,102,241,0.3);
+}
+
+.gate-title-large {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 0 0 16px 0;
+  color: #fff;
+}
+
+.gate-description-large {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0 0 36px 0;
+}
+
+.gate-login-btn {
+  background: linear-gradient(135deg, #fff, #f1f5f9);
+  color: #0f172a;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+}
+
+.gate-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(255,255,255,0.25);
+}
+
+/* Main Join Crew Page */
+.join-crew-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #0f172a 100%);
+  padding: 40px 24px 80px;
+  margin-top: 8vh;
+}
+
+.join-crew-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.join-crew-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-icon-badge {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+}
+
+.join-crew-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 16px 0;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.join-crew-subtitle {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Payment Notice Card */
+.payment-notice-card {
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05));
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.notice-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.notice-content {
+  flex: 1;
+}
+
+.notice-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 8px 0;
+}
+
+.notice-description {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.notice-description strong {
+  color: #fff;
+  font-weight: 800;
+}
+
+/* Form Styles */
+.join-crew-form {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.form-section {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.form-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-heading {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-heading svg {
+  color: #6366f1;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.field-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required {
+  color: #f87171;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #64748b;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #6366f1;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+/* Input with Icon */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  left: 14px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.input-with-icon .form-input {
+  padding-left: 44px;
+}
+
+/* Submit Section */
+.form-submit-section {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.submit-btn-modern {
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+  margin-bottom: 16px;
+}
+
+.submit-btn-modern:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(99,102,241,0.4);
+}
+
+.submit-btn-modern:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.submit-note {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .join-crew-wrapper {
+    padding: 24px 16px 60px;
+  }
+  
+  .gate-content-modern {
+    padding: 40px 28px;
+  }
+  
+  .gate-icon-large {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .gate-title-large {
+    font-size: 1.8rem;
+  }
+  
+  .gate-description-large {
+    font-size: 1rem;
+  }
+  
+  .join-crew-title {
+    font-size: 2.2rem;
+  }
+  
+  .join-crew-subtitle {
+    font-size: 1rem;
+  }
+  
+  .header-icon-badge {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .payment-notice-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .join-crew-form {
+    padding: 24px;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .gate-content-modern {
+    padding: 32px 20px;
+  }
+  
+  .join-crew-title {
+    font-size: 1.8rem;
+  }
+  
+  .join-crew-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .join-crew-form {
+    padding: 20px;
+  }
+  
+  .form-section {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+  }
+  
+  .section-heading {
+    font-size: 1.1rem;
+  }
+  
+  .notice-title {
+    font-size: 1.1rem;
+  }
+  
+  .notice-description {
+    font-size: 0.9rem;
+  }
+  
+  .submit-btn-modern {
+    width: 100%;
+    max-width: 100%;
+  }
+}
