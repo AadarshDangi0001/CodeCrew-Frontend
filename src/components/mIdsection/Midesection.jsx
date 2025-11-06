@@ -24,8 +24,11 @@ const Midesection = () => {
         </div>
 
         <div className="view-3-right">
+         <div className="cardsize">
+
          
             <ProfileCard
+              
               name="Code Crew"
               title="Developer Community"
               handle="aadarshdangi0001"
@@ -38,6 +41,8 @@ const Midesection = () => {
               enableMobileTilt={false}
               onContactClick={() => navigate('/joincrew')}
             />
+
+         </div>
          
         </div>
       </div>
