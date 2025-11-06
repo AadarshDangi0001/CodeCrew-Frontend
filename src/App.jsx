@@ -5,6 +5,7 @@ import Footer from './components/footer/Footer';
 import Cursor from './components/cursor/Cursor';
 import AppRoutes from './routes/AppRoutes';
 import { AuthProvider } from './context/AuthContext';
+import PageLoader from './components/Loader/PageLoader';
 
 const Layout = () => {
   const location = useLocation();
@@ -21,11 +22,13 @@ const Layout = () => {
 };
 
 const App = () => (
-  <AuthProvider>
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
-  </AuthProvider>
+  <PageLoader>
+    <AuthProvider>
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    </AuthProvider>
+  </PageLoader>
 );
 
 export default App;
