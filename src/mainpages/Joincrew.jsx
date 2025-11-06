@@ -69,7 +69,7 @@ const Joincrew = () => {
         await loadRazorpay();
 
         const options = {
-          key: 'rzp_test_Rc1u5Zk1zG5m3t', // test key, replace with env variable if needed
+          key: 'rzp_live_RcBZJSJNrLiNcE', // test key, replace with env variable if needed
           amount: order.amount,
           currency: order.currency,
           name: 'Code Crew',
