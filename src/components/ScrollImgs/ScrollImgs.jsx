@@ -3,9 +3,9 @@ import "./ScrollImgs.css"
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HackImg1 from "../../assets/hackathons/img1.png";
-import HackImg2 from "../../assets/hackathons/img2.png";
+import HackImg2 from "../../assets/hackathons/img2.webp";
 import HackImg3 from "../../assets/hackathons/img3.webp";
-import HackImg4 from "../../assets/hackathons/img4.png";
+import HackImg4 from "../../assets/hackathons/img4.jpeg";
 import HackImg5 from "../../assets/hackathons/img5.webp";
 import HackImg6 from "../../assets/hackathons/img6.png";
 import HackImg7 from "../../assets/hackathons/img7.png";
