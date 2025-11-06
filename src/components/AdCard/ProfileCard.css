@@ -434,7 +434,7 @@
 
 @media (max-width: 768px) {
   .pc-card {
-    height: 35svh;
+    height: 45svh;
     max-height: 450px;
   }
 
@@ -482,7 +482,7 @@
 
 @media (max-width: 480px) {
   .pc-card {
-    height: 35svh;
+    height: 45svh;
     max-height: 380px;
   }
 
@@ -533,7 +533,7 @@
 
 @media (max-width: 320px) {
   .pc-card {
-    height: 30svh;
+    height: 45svh;
     max-height: 320px;
   }
 
