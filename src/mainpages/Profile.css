@@ -34,7 +34,10 @@
 
 .profile-header-bg {
   height: 200px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  background-image: url('/codecrew_banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
 }

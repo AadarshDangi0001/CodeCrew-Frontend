@@ -377,7 +377,10 @@
   padding: 28px 24px 20px;
   text-align: center;
   position: relative;
-  background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(139,92,246,0.05));
+  background-image: url('/codecrew_banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .user-avatar-modern {

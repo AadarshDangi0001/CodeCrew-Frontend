@@ -272,13 +272,11 @@ const Hackathons = () => {
                 <article key={hack._id} className="hackathon-card-modern">
                   {/* Card Image */}
                   <div className="card-image-wrapper">
-                    {hack.image ? (
-                      <img src={hack.image} alt={hack.name} className="card-bg-image" />
-                    ) : (
-                      <div className="card-gradient-bg">
-                        <div className="card-initial">{hack.name ? hack.name.charAt(0).toUpperCase() : "H"}</div>
-                      </div>
-                    )}
+                    <img 
+                      src={hack.image || '/CodeCrewLogo2.png'} 
+                      alt={hack.name} 
+                      className="card-bg-image" 
+                    />
                     <div className="card-image-overlay"></div>
                     
                     {/* Featured Badge */}

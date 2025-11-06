@@ -109,11 +109,11 @@ const HackathonDetail = () => {
       {/* Hero Section with Image/Gradient */}
       <section className="detail-hero-section">
         <div className="hero-bg-wrapper">
-          {hack.image ? (
-            <img src={hack.image} alt={hack.name} className="hero-bg-image" />
-          ) : (
-            <div className="hero-bg-gradient" />
-          )}
+          <img 
+            src={hack.image || '/CodeCrewLogo2.png'} 
+            alt={hack.name} 
+            className="hero-bg-image" 
+          />
           <div className="hero-bg-overlay" />
         </div>
         
